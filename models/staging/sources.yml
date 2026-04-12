@@ -1,0 +1,20 @@
+version: 2
+sources:
+  - name: coffee_raw
+    description: "raw coffee sales data"
+    database: coffee
+    schema: raw
+
+    tables:
+      - name: src_coffee_sales
+        description: "Transaction Level coffee sales"
+        columns:
+          - name: transaction_id
+            description: "Unique transaction ID"
+            tests:
+               - Unique
+               - not_null
+          - name: transaction_date
+            description: "Date of transaction"
+            tests:
+               - not_null

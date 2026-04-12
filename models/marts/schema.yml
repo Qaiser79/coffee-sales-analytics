@@ -1,0 +1,73 @@
+version: 2
+
+models:
+  - name: mart_daily_sales_by_store
+    description: "Daily sales summary per store"
+    columns:
+      - name: sale_date 
+        description: "Date of sales aggregation"
+        tests:
+          - not_null
+          #- dbt_utils.unique_combination_of_columns:
+           #   arguments:
+            #    combination_of_columns: [sale_date, store_key]
+      - name: store_key
+        description: "Surrogate key from dim_stores"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_stores')
+              field: store_key
+      - name: total_revenue
+        description: "Total revenue for the day"
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              #row_condition: "total_revenue >= 0"
+      - name: transaction_count
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 1
+              row_condition: "transaction_count >= 1"
+  
+  - name: mart_daily_sales_by_store_category
+    description: "Daily sales summary per store and product group"
+    columns:
+      - name: sale_date
+        tests:
+          - not_null
+      - name: product_group
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Beverage', 'Food', 'Other', 'unknown']
+      - name: total_revenue
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+  - name: mart_top_products
+    description: "Overall ranking of top products by revenue and quantity"
+    columns:
+      - name: product_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_products')
+              field: product_key
+
+      - name: revenue_rank
+        description: "Rank 1 = highest revenue product"
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 1
+              row_condition: "revenue_rank >= 1"
+
+      - name: total_revenue
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+
+      - name: total_quantity_sold
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 1

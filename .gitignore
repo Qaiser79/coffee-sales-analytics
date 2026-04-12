@@ -1,0 +1,51 @@
+# dbt specific
+target/
+dbt_packages/
+logs/
+dbt_project.yml.bak
+
+# Profiles & Credentials (Very Important!)
+profiles.yml
+*.yml.bak
+.env
+.env.*
+credentials.json
+
+# Python & Virtual Environment
+venv/
+.venv/
+env/
+ENV/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE / Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+
+# Logs
+*.log
+*.log.*
+
+# Temporary files
+*.tmp
+*.temp

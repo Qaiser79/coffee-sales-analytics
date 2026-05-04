@@ -23,7 +23,8 @@ visualized in an interactive Power BI dashboard.
 
 ## 🏗️ Architecture
 
-![Architecture Diagram](add_your_canva_diagram_image_here)
+<img width="2240" height="1260" alt="image" src="https://github.com/user-attachments/assets/12c1016a-0fc8-4f84-b566-881e06424026" />
+
 
 CSV Files → AWS S3 → Snowflake (Raw Layer)
 → dbt (Staging + Marts) → Power BI Dashboard

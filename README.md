@@ -86,6 +86,11 @@ mart_top_products
 
 ## 🔄 dbt Layers
 
+### DBT Lineage
+
+<img width="1353" height="671" alt="Screenshot 2026-05-04 at 23 45 42" src="https://github.com/user-attachments/assets/e0e1daeb-def6-4bc2-902e-7cd85b2a253e" />
+
+
 ### Staging Layer
 - Raw data cleaning and renaming
 - Basic type casting
